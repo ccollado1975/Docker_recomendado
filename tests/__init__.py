@@ -131,9 +131,12 @@ class ScaffoldingLookupCase(unittest.TestCase):
                 ("grep", "test-conf", "auto/odoo.conf"),
                 # ``dummy_addon`` and ``private_addon`` exist
                 ("test", "-d", "auto/addons/dummy_addon"),
-                ("test", "!", "-d", "custom/src/private/dummy_addon"),
+                ("test", "-h", "auto/addons/dummy_addon"),
+                ("test", "-f", "auto/addons/dummy_addon/__init__.py"),
+                ("test", "!", "-e", "custom/src/private/dummy_addon"),
                 ("test", "-d", "custom/src/private/private_addon"),
-                ("test", "!", "-d", "auto/addons/private_addon"),
+                ("test", "-f", "custom/src/private/private_addon/__init__.py"),
+                ("test", "!", "-e", "auto/addons/private_addon"),
                 # ``odoo`` command works
                 ("odoo", "--help"),
             )
