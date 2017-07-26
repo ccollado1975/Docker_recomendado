@@ -8,6 +8,13 @@ python:
 services:
   - docker
 
+git:
+  depth: 1
+
+branches:
+  only:
+    - master
+
 env:
   global:
     # Variables found by default in Docker Hub builder
