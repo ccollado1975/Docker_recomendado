@@ -129,6 +129,14 @@ class ScaffoldingLookupCase(unittest.TestCase):
                 ("test", "-f", "/home/odoo/created-at-entrypoint"),
                 # ``custom/conf.d`` was properly concatenated
                 ("grep", "test-conf", "auto/odoo.conf"),
+                # ``custom/dependencies`` were installed
+                ("test", "!", "-e", "/usr/bin/ld"),
+                ("test", "-!", "-e", "/var/lib/apt/lists/lock"),
+                ("grep", "ld", "/home/odoo/created-at-build"),
+                ("busybox", "whoami"),
+                ("node", "-e", "require('test-npm-install')"),
+                ("python", "-c", "import docker"),
+                ("aloha_world"),
                 # ``dummy_addon`` and ``private_addon`` exist
                 ("test", "-d", "auto/addons/dummy_addon"),
                 ("test", "!", "-d", "custom/src/private/dummy_addon"),
